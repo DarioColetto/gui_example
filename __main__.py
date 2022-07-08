@@ -1,5 +1,6 @@
 from components.main_page import MyApp
-# from components.login_page import LoginPage
+
+from components.login_page import LoginPage
 
 
 # top = LoginPage()
