@@ -60,9 +60,4 @@ class LoginPage(Tk):
                 messagebox.showerror("Information", "The Username or Password you have entered are incorrect ")
 
 
-if __name__ == "__main__":
-
-
-    login_page_test = LoginPage()
-    login_page_test.mainloop()
 
