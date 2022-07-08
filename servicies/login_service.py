@@ -1,4 +1,6 @@
 
+print("login_service working")
+
 def validate(username, password):
     try:
         with open("credentials.txt", "r") as credentials:

@@ -1,28 +1,36 @@
+# import sys
+# import os
+
+# myDir = os.getcwd()
+# sys.path.append(myDir)
+
+# from pathlib import Path
+# path = Path(myDir)
+# a=str(path.parent.absolute())
+
+# sys.path.append(a)
+
+
 from tkinter import Frame, Label, Tk, messagebox, ttk
 from servicies.routing_service import Routing
 from servicies.login_service import validate
+from components.styles import title_styles, text_styles
+
+
 
 class LoginPage(Tk):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
 
-        super().__init__(self, *args, **kwargs)
-
+        super().__init__()
 
         self.geometry("626x431")  
-        self.resizable(0, 0)  
+        self.resizable(0, 0) 
+        self.title("Login") 
         
         main_frame = Frame(self, bg="#708090", height=431, width=626)
         main_frame.pack(fill="both", expand="true")
         
-        
-        #syles aparte
-        title_styles = {"font": ("Trebuchet MS Bold", 16), "background": "blue"}
-
-        text_styles = {"font": ("Verdana", 14),
-                       "background": "blue",
-                       "foreground": "#E1FFFF"}
-
         frame_login = Frame(main_frame, bg="blue", relief="groove", bd=2)
         frame_login.place(rely=0.30, relx=0.17, height=130, width=400)
 
@@ -62,4 +70,11 @@ class LoginPage(Tk):
                 top.destroy()
             else:
                 messagebox.showerror("Information", "The Username or Password you have entered are incorrect ")
+
+
+if __name__ == "__main__":
+
+
+    login_page_test = LoginPage()
+    login_page_test.mainloop()
 
