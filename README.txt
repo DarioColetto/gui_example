@@ -3,4 +3,5 @@ GUI application with porpuse of showing Tkinter(windows, widgets, some configura
 Libraries/Modules used:
 
 -Tkinter for GUI, 
--Pickle or Shelve to perform the persistance. It could be modify to use Sqlite library.
+-Shelve to perform persistance. (It could be modify to use Sqlite library.)
+-sys & os to solve module import errors.
