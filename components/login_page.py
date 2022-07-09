@@ -1,7 +1,12 @@
+import sys
+import os
+        
 
+sys.path.append(os.getcwd())
 from tkinter import Frame, Label, Tk, messagebox, ttk
 from servicies.routing_service import Routing
-from servicies.login_service import validate
+
+from servicies.login_service import validation
 from components.styles import title_styles, text_styles
 
 
@@ -31,33 +36,35 @@ class LoginPage(Tk):
         label_pw = Label(frame_login, text_styles, text="Password:")
         label_pw.grid(row=2, column=0)
 
-        entry_user = ttk.Entry(frame_login, width=45, cursor="xterm")
-        entry_user.grid(row=1, column=1)
+        self.entry_user = ttk.Entry(frame_login, width=45, cursor="xterm")
+        self.entry_user.grid(row=1, column=1)
 
-        entry_pw = ttk.Entry(frame_login, width=45, cursor="xterm", show="*")
-        entry_pw.grid(row=2, column=1)
+        self.entry_pw = ttk.Entry(frame_login, width=45, cursor="xterm", show="*")
+        self.entry_pw.grid(row=2, column=1)
 
-        button = ttk.Button(frame_login, text="Login", command=lambda: getlogin())
-        button.place(rely=0.70, relx=0.50)
+        self.button = ttk.Button(frame_login, text="Login", command= self.getlogin)
+        self.button.place(rely=0.70, relx=0.50)
 
         signup_btn = ttk.Button(frame_login, text="Register", command=lambda: Routing.to_signup_page(...))
         signup_btn.place(rely=0.70, relx=0.75)
 
 
         
-        def getlogin():
-            username = entry_user.get()
-            password = entry_pw.get()
+    def getlogin(self):
             
-            validation = validate(username, password)
+        username = self.entry_user.get()
+        password = self.entry_pw.get()
             
-            if validation:
-                messagebox.showinfo("Login Successful",
-                                       "Welcome {}".format(username))
-                root.deiconify()
-                top.destroy()
-            else:
-                messagebox.showerror("Information", "The Username or Password you have entered are incorrect ")
+            
+        if validation(username, password):
+            messagebox.showinfo('Login Successful',  f'Welcome {username}')
+                
+            self.destroy()
+        else:
+            messagebox.showerror("Information", "The Username or Password you have entered are incorrect ")
 
 
 
+if __name__ == '__main__':
+    test = LoginPage()
+    test.mainloop() 

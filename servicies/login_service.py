@@ -1,14 +1,23 @@
+import shelve
+import sys
+import os
+
+
+sys.path.append(os.getcwd())
+
+from database.database import path
+
 
 print("login_service working")
 
-def validate(username, password):
+def validation(username, password):
+    
     try:
-        with open("credentials.txt", "r") as credentials:
-            for line in credentials:
-                line = line.split(",")
-                if line[1] == username and line[3] == password:
+        with shelve.open(f'{path}/credentials', 'r' )  as credentials:
+                if credentials['username'] == username and credentials['password'] == password:
+                    
                     return True
-            return False
-    except FileNotFoundError:
-        print("You need to Register first or amend Line 71 to     if True:")
-        return False
+  
+
+    except KeyError:
+        print ("User and Password shoul be created")
